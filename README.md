@@ -6,7 +6,7 @@
 
 GWAS Analysis Pipeline is a complete, end-to-end solution for performing rigorous genome-wide association studies to identify genetic variants associated with complex traits and diseases. This 18-step automated pipeline implements GWAS best practices, from raw genotype data to publication-ready results.
 
-**BIOLOGICAL BACKGROUND**: Genome-Wide Association Studies (GWAS) are powerful tools for identifying single nucleotide polymorphisms (SNPs) and other genetic variants associated with phenotypic traits, disease susceptibility, or treatment response. By analyzing hundreds of thousands to millions of genetic variants across the genome in large populations, GWAS can uncover novel biological pathways, disease mechanisms, and potential therapeutic targets. This pipeline is specifically designed for case-control studies, comparing allele frequencies between affected individuals (cases) and unaffected controls to identify disease-associated loci.
+**Biological Background**: Genome-Wide Association Studies (GWAS) are powerful tools for identifying single nucleotide polymorphisms (SNPs) and other genetic variants associated with phenotypic traits, disease susceptibility, or treatment response. By analyzing hundreds of thousands to millions of genetic variants across the genome in large populations, GWAS can uncover novel biological pathways, disease mechanisms, and potential therapeutic targets. This pipeline is specifically designed for case-control studies, comparing allele frequencies between affected individuals (cases) and unaffected controls to identify disease-associated loci.
 
 ================================================================================
 
@@ -307,4 +307,5 @@ For questions or issues:
 **Version:** 1.0.0  
 **Last Updated:** December 11, 2025  
 **License:** MIT
+
 
