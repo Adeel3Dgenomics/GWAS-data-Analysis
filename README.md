@@ -1,10 +1,14 @@
-# AA-GWAS Analysis Pipeline
+# GWAS Analysis Pipeline
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PLINK](https://img.shields.io/badge/PLINK-v1.90b3w-blue.svg)](https://www.cog-genomics.org/plink/1.9/)
 [![Python](https://img.shields.io/badge/Python-3.6%2B-green.svg)](https://www.python.org/)
 
-A comprehensive, production-ready Genome-Wide Association Study (GWAS) analysis pipeline with quality control, association testing, population stratification analysis, and visualization.
+GWAS Analysis Pipeline is a complete, end-to-end solution for performing rigorous genome-wide association studies to identify genetic variants associated with complex traits and diseases. This 18-step automated pipeline implements GWAS best practices, from raw genotype data to publication-ready results.
+
+**BIOLOGICAL BACKGROUND**: Genome-Wide Association Studies (GWAS) are powerful tools for identifying single nucleotide polymorphisms (SNPs) and other genetic variants associated with phenotypic traits, disease susceptibility, or treatment response. By analyzing hundreds of thousands to millions of genetic variants across the genome in large populations, GWAS can uncover novel biological pathways, disease mechanisms, and potential therapeutic targets. This pipeline is specifically designed for case-control studies, comparing allele frequencies between affected individuals (cases) and unaffected controls to identify disease-associated loci.
+
+================================================================================
 
 ## 🎯 Features
 
@@ -19,8 +23,8 @@ A comprehensive, production-ready Genome-Wide Association Study (GWAS) analysis 
 ## 📊 Dataset
 
 - **Genome Build:** hg19/GRCh37
-- **Total SNPs:** 926,030 variants
-- **Total Individuals:** 2,650 samples
+- **Total SNPs:** > 26M variants
+- **Total Individuals:** > 150K samples
 - **Study Type:** Case-control association study
 
 ## 🚀 Quick Start
@@ -271,7 +275,7 @@ pip install --user pandas numpy matplotlib seaborn
 ## 👥 Contributors
 
 - **Adeel** - Pipeline development and implementation
-- **Contact:** muhammad.muzammal@bs.qau.edu.pk
+- **Contact:** Muhammad-Adeel@omrf.org
 
 ## 📝 License
 
@@ -287,8 +291,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions or issues:
 - **GitHub Issues:** https://github.com/Adeel3Dgenomics/GWAS-data-Analysis/issues
-- **Email:** muhammad.muzammal@bs.qau.edu.pk
-- **Original Location:** `/s/nath-lab/adeel/AA-GWAS/AA_GWAS`
+- **Email:** Muhammad-Adeel@omrf.org
 
 ## 🚀 Quick Links
 
@@ -304,3 +307,4 @@ For questions or issues:
 **Version:** 1.0.0  
 **Last Updated:** December 11, 2025  
 **License:** MIT
+
