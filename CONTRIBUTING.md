@@ -1,4 +1,4 @@
-# Contributing to AA-GWAS Analysis Pipeline
+# Contributing to GWAS Analysis Pipeline
 
 Thank you for your interest in contributing! This document provides guidelines for contributing to the project.
 
@@ -173,3 +173,4 @@ Don't hesitate to ask! Open a discussion or send an email.
 ---
 
 Thank you for contributing to better GWAS analysis tools! 🎉
+
