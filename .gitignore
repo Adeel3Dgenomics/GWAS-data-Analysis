@@ -1,0 +1,178 @@
+# .gitignore for AA-GWAS Analysis Pipeline
+
+# GWAS Data Files (large binary files - do not commit)
+*.bed
+*.bim
+*.fam
+*.ped
+*.map
+*.tped
+*.tfam
+*.vcf
+*.vcf.gz
+*.bcf
+
+# PLINK output files
+*.hh
+*.log
+*.nosex
+*.nof
+*.genome
+*.rel
+*.grm
+*.grm.bin
+*.grm.N.bin
+*.grm.id
+*.irem
+*.king
+*.king.cutoff.in
+*.king.cutoff.out
+
+# Association results (can be large)
+*.assoc
+*.assoc.linear
+*.assoc.logistic
+*.qassoc
+*.assoc.fisher
+*.model
+*.cmh
+*.cmh.2
+*.homog
+*.assoc.adjusted
+
+# Frequency and statistics files
+*.frq
+*.frq.strat
+*.frq.cc
+*.frq.counts
+*.hardy
+*.hwe
+*.missing
+*.lmiss
+*.imiss
+*.het
+*.sexcheck
+
+# LD files
+*.ld
+*.prune.in
+*.prune.out
+*.clumped
+
+# PCA files
+*.eigenval
+*.eigenvec
+
+# Cluster files
+*.cluster*
+*.mds
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj
+*.Rproj.user/
+
+# SLURM logs
+*.out
+*.err
+slurm-*.out
+
+# Analysis results directories (optional - comment out if you want to commit results)
+analysis_results/
+individuals_lists/
+plots/
+reports/
+
+# Backup files
+*~
+*.bak
+*.backup
+*.old
+*.orig
+*_backup/
+*_old/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+*.7z
+
+# Documentation build
+docs/_build/
+site/
+
+# Local configuration
+config.local
+.env
+.env.local
+
+# Large data directories
+raw_data/
+big_data/
+downloads/
+
+# Specific to this project - keep these commented if needed
+# README_local.md
+# notes.txt
+# scratch/
+
+# Allow these important files
+!README.md
+!LICENSE
+!CHANGELOG.md
+!CONTRIBUTING.md
+!.gitignore
+!gwas_analysis_pipeline.sh
+!extract_individuals.sh
+!extract_top_snps.py
+!generate_plots.py

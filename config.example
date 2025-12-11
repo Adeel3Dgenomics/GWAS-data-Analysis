@@ -1,0 +1,87 @@
+# Example Configuration for AA-GWAS Pipeline
+# Copy this file and modify for your dataset
+
+# ============================================
+# INPUT DATA
+# ============================================
+# PLINK binary fileset prefix (without .bed/.bim/.fam extension)
+INPUT_PREFIX="AA_GWAS_hg19_uniq"
+
+# ============================================
+# QUALITY CONTROL THRESHOLDS
+# ============================================
+# SNP missingness threshold (0.02 = 2%)
+GENO_THRESHOLD=0.02
+
+# Individual missingness threshold (0.02 = 2%)
+MIND_THRESHOLD=0.02
+
+# Minor allele frequency threshold (0.01 = 1%)
+MAF_THRESHOLD=0.01
+
+# Hardy-Weinberg equilibrium p-value threshold
+HWE_THRESHOLD=1e-6
+
+# ============================================
+# POPULATION STRUCTURE
+# ============================================
+# LD pruning parameters
+LD_WINDOW=50        # Window size in SNPs
+LD_STEP=5           # Step size in SNPs
+LD_R2=0.2           # r² threshold
+
+# Number of principal components to calculate
+N_PCS=20
+
+# IBD/Relatedness threshold (PI_HAT)
+IBD_THRESHOLD=0.185
+
+# ============================================
+# ASSOCIATION ANALYSIS
+# ============================================
+# Number of PCs to use as covariates
+PCS_FOR_ASSOC_3=3
+PCS_FOR_ASSOC_10=10
+
+# Significance thresholds
+GENOME_WIDE_SIG=5e-8
+SUGGESTIVE_SIG=1e-5
+
+# ============================================
+# SLURM CONFIGURATION
+# ============================================
+CPUS=16
+MEMORY="64G"
+TIME_LIMIT="04:00:00"
+PARTITION="serial"
+EMAIL="muhammad.muzammal@bs.qau.edu.pk"
+
+# ============================================
+# OUTPUT OPTIONS
+# ============================================
+# Output directory
+OUTPUT_DIR="analysis_results"
+
+# Generate plots (requires Python with pandas, matplotlib, seaborn)
+GENERATE_PLOTS=true
+
+# Export formats (true/false)
+EXPORT_VCF=true
+EXPORT_PED=true
+EXPORT_TPED=true
+
+# ============================================
+# ADVANCED OPTIONS
+# ============================================
+# Allow no-sex individuals in analysis
+ALLOW_NO_SEX=true
+
+# Remove heterozygous haploid genotypes
+REMOVE_HH_GENOTYPES=true
+
+# Keep intermediate files
+KEEP_INTERMEDIATE=true
+
+# Number of top SNPs to extract
+N_TOP_SNPS_100=100
+N_TOP_SNPS_1000=1000
