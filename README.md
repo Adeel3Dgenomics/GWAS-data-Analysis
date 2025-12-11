@@ -286,7 +286,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For questions or issues:
-- **GitHub Issues:** https://github.com/yourusername/AA-GWAS/issues
+- **GitHub Issues:** https://github.com/Adeel3Dgenomics/GWAS-data-Analysis/issues
 - **Email:** muhammad.muzammal@bs.qau.edu.pk
 - **Original Location:** `/s/nath-lab/adeel/AA-GWAS/AA_GWAS`
 
