@@ -273,49 +273,49 @@ log_message "[Step 9/18] Generating detailed QC report..."
     echo "================================================================================"
     echo ""
     echo "Original data:"
-    printf "  Individuals: %d\n" $(wc -l < ${INPUT_PREFIX}.fam)
-    printf "  Cases: %d\n" $(awk '$6==2' ${INPUT_PREFIX}.fam | wc -l)
-    printf "  Controls: %d\n" $(awk '$6==1' ${INPUT_PREFIX}.fam | wc -l)
-    printf "  Males: %d\n" $(awk '$5==1' ${INPUT_PREFIX}.fam | wc -l)
-    printf "  Females: %d\n" $(awk '$5==2' ${INPUT_PREFIX}.fam | wc -l)
-    printf "  Unknown sex: %d\n" $(awk '$5==0' ${INPUT_PREFIX}.fam | wc -l)
+    printf "  Individuals: %d\n" "$(wc -l < ${INPUT_PREFIX}.fam)"
+    printf "  Cases: %d\n" "$(awk '$6==2' ${INPUT_PREFIX}.fam | wc -l)"
+    printf "  Controls: %d\n" "$(awk '$6==1' ${INPUT_PREFIX}.fam | wc -l)"
+    printf "  Males: %d\n" "$(awk '$5==1' ${INPUT_PREFIX}.fam | wc -l)"
+    printf "  Females: %d\n" "$(awk '$5==2' ${INPUT_PREFIX}.fam | wc -l)"
+    printf "  Unknown sex: %d\n" "$(awk '$5==0' ${INPUT_PREFIX}.fam | wc -l)"
     echo ""
     echo "After missing data filter (--geno ${GENO_THRESHOLD} --mind ${MIND_THRESHOLD}):"
-    printf "  Individuals: %d\n" $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.fam)
+    printf "  Individuals: %d\n" "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.fam)"
     printf "  Individuals removed: %d\n" $(($(wc -l < ${INPUT_PREFIX}.fam) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.fam)))
     echo ""
     echo "QC Flags:"
-    printf "  Sex discordance: %d\n" ${SEX_DISCORD}
-    printf "  Heterozygosity outliers: %d\n" ${HET_OUTLIERS}
+    printf "  Sex discordance: %d\n" "${SEX_DISCORD}"
+    printf "  Heterozygosity outliers: %d\n" "${HET_OUTLIERS}"
     echo ""
     echo "================================================================================"
     echo "SNP QC SUMMARY"
     echo "================================================================================"
     echo ""
     echo "Original data:"
-    printf "  SNPs: %d\n" $(wc -l < ${INPUT_PREFIX}.bim)
+    printf "  SNPs: %d\n" "$(wc -l < ${INPUT_PREFIX}.bim)"
     echo ""
     echo "After missing data filter (--geno ${GENO_THRESHOLD}):"
-    printf "  SNPs: %d\n" $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.bim)
+    printf "  SNPs: %d\n" "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.bim)"
     printf "  SNPs removed: %d\n" $(($(wc -l < ${INPUT_PREFIX}.bim) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.bim)))
     echo ""
     echo "After MAF filter (--maf ${MAF_THRESHOLD}):"
-    printf "  SNPs: %d\n" $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc2_maf.bim)
+    printf "  SNPs: %d\n" "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc2_maf.bim)"
     printf "  SNPs removed: %d\n" $(($(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc1_missing.bim) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc2_maf.bim)))
     echo ""
     echo "After HWE filter (--hwe ${HWE_THRESHOLD}):"
-    printf "  SNPs: %d\n" $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim)
+    printf "  SNPs: %d\n" "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim)"
     printf "  SNPs removed: %d\n" $(($(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc2_maf.bim) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim)))
     echo ""
     echo "================================================================================"
     echo "TOTAL FILTERING SUMMARY"
     echo "================================================================================"
     printf "  Total individuals removed: %d (%.2f%%)\n" \
-        $(($(wc -l < ${INPUT_PREFIX}.fam) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam))) \
-        $(awk -v orig=$(wc -l < ${INPUT_PREFIX}.fam) -v final=$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam) 'BEGIN {print (orig-final)/orig*100}')
+        $(("$(wc -l < ${INPUT_PREFIX}.fam)" - "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam)")) \
+        "$(awk -v orig="$(wc -l < ${INPUT_PREFIX}.fam)" -v final="$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam)" 'BEGIN {print (orig-final)/orig*100}')"
     printf "  Total SNPs removed: %d (%.2f%%)\n" \
-        $(($(wc -l < ${INPUT_PREFIX}.bim) - $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim))) \
-        $(awk -v orig=$(wc -l < ${INPUT_PREFIX}.bim) -v final=$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim) 'BEGIN {print (orig-final)/orig*100}')
+        $(("$(wc -l < ${INPUT_PREFIX}.bim)" - "$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim)")) \
+        "$(awk -v orig="$(wc -l < ${INPUT_PREFIX}.bim)" -v final="$(wc -l < ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.bim)" 'BEGIN {print (orig-final)/orig*100}')"
     echo "================================================================================"
 } > "${QC_DIR}/qc_summary.txt"
 
@@ -373,7 +373,7 @@ RELATED_PAIRS=$(wc -l < ${QC_DIR}/related_pairs.txt)
 log_message "Identified ${RELATED_PAIRS} related pairs (PI_HAT > ${IBD_THRESHOLD})"
 
 # Create list of one individual from each related pair to remove
-if [ $RELATED_PAIRS -gt 0 ]; then
+if [ "$RELATED_PAIRS" -gt 0 ]; then
     awk -v thresh=$IBD_THRESHOLD '$10 > thresh {print $1, $2}' \
         "${QC_DIR}/${INPUT_PREFIX}_ibd.genome" | head -n 1 > "${QC_DIR}/related_to_remove.txt"
     log_message "Created list of related individuals to consider removing"
@@ -635,7 +635,7 @@ After Quality Control:
   Cases (affected):         $(awk '$6==2' ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam | wc -l)
   Controls (unaffected):    $(awk '$6==1' ${QC_DIR}/${INPUT_PREFIX}_qc3_hwe.fam | wc -l)
   
-Individuals Removed:        $((ORIG_INDIV - FINAL_INDIV)) ($(awk -v o=$ORIG_INDIV -v f=$FINAL_INDIV 'BEGIN {printf "%.2f", (o-f)/o*100}')%)
+Individuals Removed:        $((ORIG_INDIV - FINAL_INDIV)) ($(awk -v o="$ORIG_INDIV" -v f="$FINAL_INDIV" 'BEGIN {printf "%.2f", (o-f)/o*100}')%)
 
 ================================================================================
                             SNP INFORMATION
@@ -647,7 +647,7 @@ Original Dataset:
 After Quality Control:
   Total SNPs:               ${FINAL_SNPS}
   
-SNPs Removed:               $((ORIG_SNPS - FINAL_SNPS)) ($(awk -v o=$ORIG_SNPS -v f=$FINAL_SNPS 'BEGIN {printf "%.2f", (o-f)/o*100}')%)
+SNPs Removed:               $((ORIG_SNPS - FINAL_SNPS)) ($(awk -v o="$ORIG_SNPS" -v f="$FINAL_SNPS" 'BEGIN {printf "%.2f", (o-f)/o*100}')%)
 SNPs for PCA (LD-pruned):   $(wc -l < ${QC_DIR}/${INPUT_PREFIX}_pruning.prune.in)
 
 ================================================================================

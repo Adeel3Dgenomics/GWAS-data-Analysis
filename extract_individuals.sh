@@ -10,7 +10,7 @@ ml plink2/1.90b3w
 
 # Set working directory
 WORKDIR="/s/nath-lab/adeel/AA-GWAS/AA_GWAS"
-cd "$WORKDIR"
+cd "$WORKDIR" || exit 1
 
 # Input file prefix
 INPUT_PREFIX="AA_GWAS_hg19_uniq"
