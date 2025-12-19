@@ -308,5 +308,21 @@ For questions or issues:
 **Last Updated:** December 11, 2025  
 **License:** MIT
 
+## 📄 License & Trademark Notice
+
+### License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Trademark Notice
+- **PLINK** is a trademark of Shaun Purcell and Christopher Chang, and is distributed under the GNU General Public License v3.0.
+- **Python** is a trademark of the Python Software Foundation.
+- **GitHub** is a trademark of GitHub, Inc.
+- **Linux** is a trademark of Linus Torvalds.
+- **Bash** is a trademark of the Free Software Foundation.
+
+This software is provided "as is" without warranty of any kind. The authors and contributors are not responsible for any misuse or damage caused by this software. Users are responsible for ensuring compliance with applicable laws, regulations, and institutional policies when using this pipeline.
+
+For academic and research use only. Not intended for clinical or diagnostic purposes.
+
 
 
