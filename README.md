@@ -275,7 +275,7 @@ pip install --user pandas numpy matplotlib seaborn
 ## 👥 Contributors
 
 - **Adeel** - Pipeline development and implementation
-- **Contact:** Muhammad-Adeel@omrf.org
+- **Contact:** Muhammad-Adeel@omrf.org/m.muzammal.adeel@outlook.com
 
 ## 📝 License
 
@@ -283,7 +283,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Nath Lab for computational resources
+- OMRF for computational resources
 - PLINK development team
 - GWAS community for best practices
 
