@@ -96,9 +96,12 @@ def qq_plot(assoc_file, output_file, title="Q-Q Plot"):
     n = len(observed)
     expected = -np.log10(np.arange(1, n + 1) / (n + 1))
     
-    # Calculate lambda (genomic inflation factor)
-    chisq = np.percentile(pvals, 50)
-    lambda_gc = np.median(np.square(np.sqrt(2) * np.abs(np.random.randn(len(pvals))))) / chisq if chisq > 0 else 1.0
+    # Calculate lambda (genomic inflation factor) correctly
+    # Convert p-values to chi-square statistics (for 1 df)
+    from scipy import stats
+    chisq_stats = stats.chi2.ppf(1 - pvals, 1)
+    # Lambda GC is the ratio of observed to expected median chi-square
+    lambda_gc = np.median(chisq_stats) / stats.chi2.ppf(0.5, 1) if len(chisq_stats) > 0 else 1.0
     
     # Create plot
     fig, ax = plt.subplots(figsize=(8, 8))
@@ -200,36 +203,53 @@ def main(assoc_dir, qc_dir, output_dir):
     
     results = {}
     
-    # Manhattan and Q-Q plots for different analyses
-    analyses = [
-        ('AA_GWAS_hg19_uniq_assoc_noQC.assoc', 'No QC'),
-        ('AA_GWAS_hg19_uniq_assoc_withQC.assoc', 'With QC'),
-        ('AA_GWAS_hg19_uniq_assoc.assoc', 'Standard')
-    ]
+    # Dynamically find all association files
+    assoc_path = Path(assoc_dir)
+    assoc_files = list(assoc_path.glob('*.assoc'))
     
-    for assoc_file, label in analyses:
-        assoc_path = Path(assoc_dir) / assoc_file
-        if assoc_path.exists():
-            print(f"\n--- Processing {label} ---")
-            
-            # Manhattan plot
-            manhattan_out = output_dir / f"manhattan_plot_{label.replace(' ', '_').lower()}.png"
-            try:
-                top_snps = manhattan_plot(str(assoc_path), str(manhattan_out), 
-                                         title=f"Manhattan Plot ({label})")
-                results[f'{label}_top_snps'] = top_snps
-            except Exception as e:
-                print(f"Error creating Manhattan plot for {label}: {e}")
-            
-            # Q-Q plot
-            qq_out = output_dir / f"qq_plot_{label.replace(' ', '_').lower()}.png"
-            try:
-                lambda_gc = qq_plot(str(assoc_path), str(qq_out), 
-                                   title=f"Q-Q Plot ({label})")
-                results[f'{label}_lambda'] = lambda_gc
-                print(f"Genomic inflation factor (λ): {lambda_gc:.3f}")
-            except Exception as e:
-                print(f"Error creating Q-Q plot for {label}: {e}")
+    if not assoc_files:
+        print("No .assoc files found in association directory")
+        return results
+    
+    print(f"Found {len(assoc_files)} association files: {[f.name for f in assoc_files]}")
+    
+    # Process each association file
+    for assoc_file_path in assoc_files:
+        # Create a readable label from filename
+        filename = assoc_file_path.name
+        if 'noQC' in filename:
+            label = 'No QC'
+        elif 'withQC' in filename:
+            label = 'With QC'
+        elif 'logistic' in filename and '3PCs' in filename:
+            label = 'Logistic 3PCs'
+        elif 'logistic' in filename and '10PCs' in filename:
+            label = 'Logistic 10PCs'
+        elif 'logistic' in filename:
+            label = 'Logistic'
+        else:
+            label = 'Standard'
+        
+        print(f"\n--- Processing {label} ({filename}) ---")
+        
+        # Manhattan plot
+        manhattan_out = output_dir / f"manhattan_plot_{label.replace(' ', '_').lower()}.png"
+        try:
+            top_snps = manhattan_plot(str(assoc_file_path), str(manhattan_out), 
+                                     title=f"Manhattan Plot ({label})")
+            results[f'{label}_top_snps'] = top_snps
+        except Exception as e:
+            print(f"Error creating Manhattan plot for {label}: {e}")
+        
+        # Q-Q plot
+        qq_out = output_dir / f"qq_plot_{label.replace(' ', '_').lower()}.png"
+        try:
+            lambda_gc = qq_plot(str(assoc_file_path), str(qq_out), 
+                               title=f"Q-Q Plot ({label})")
+            results[f'{label}_lambda'] = lambda_gc
+            print(f"Genomic inflation factor (λ): {lambda_gc:.3f}")
+        except Exception as e:
+            print(f"Error creating Q-Q plot for {label}: {e}")
     
     # PCA plot
     pca_file = Path(qc_dir) / 'AA_GWAS_hg19_uniq_pca.eigenvec'

@@ -13,7 +13,7 @@
 #SBATCH --mem=64G
 #SBATCH --partition=serial
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=muhammad.muzammal@bs.qau.edu.pk
+#SBATCH --mail-user=abc@email.com
 
 # Exit on error, undefined variables, and pipe failures
 set -euo pipefail
