@@ -275,7 +275,7 @@ pip install --user pandas numpy matplotlib seaborn
 ## 👥 Contributors
 
 - **Adeel** - Pipeline development and implementation
-- **Contact:** Muhammad-Adeel@omrf.org/m.muzammal.adeel@outlook.com
+- **Contact:** Muhammad-Adeel@omrf.org/ m.muzammal.adeel@outlook.com
 
 ## 📝 License
 
